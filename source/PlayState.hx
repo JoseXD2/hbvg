@@ -740,10 +740,14 @@ class PlayState extends MusicBeatState
 						stageCurtains.active = false;
 	
 						add(stageCurtains);
-						
-			    // WITHERED FREDDY STAGE 1
+					
+
+		
+
+			}
+			// WITHERED FREDDY STAGE 1
 			case 'diningarea':
-				{
+			{	
 					defaultCamZoom = 0.8;
 					curStage = 'diningarea';
 					var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freddystage/stageback','shared'));
