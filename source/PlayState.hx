@@ -740,8 +740,7 @@ class PlayState extends MusicBeatState
 						stageCurtains.active = false;
 	
 						add(stageCurtains);
-				}
-			// WITHERED FREDDY STAGE 1
+			    // WITHERED FREDDY STAGE 1
 			case 'diningarea':
 				{
 					defaultCamZoom = 0.8;
@@ -753,21 +752,21 @@ class PlayState extends MusicBeatState
 					bg.y = -200;
 					add(bg);
 
-				        var ballons:FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+				    var ballons:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
 					balloons.x = -580;
 					balloons.y = -200;
 					balloons.visible = true;
 
                     
-                                        var ballons:FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+                    var ballons:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
 					balloons.x = -580;
 					balloons.y = -200;
 					balloons.visible = true;
 					
 					
-					var ballons:FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+					var ballons:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
 					balloons.x = -580;
 					balloons.y = -200;
@@ -800,7 +799,7 @@ class PlayState extends MusicBeatState
 
 					add(stageCurtains);
 			}
-		
+		}
 		}
 		//defaults if no gf was found in chart
 		var gfCheck:String = 'gf';
