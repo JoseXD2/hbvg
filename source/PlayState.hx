@@ -740,6 +740,7 @@ class PlayState extends MusicBeatState
 						stageCurtains.active = false;
 	
 						add(stageCurtains);
+						
 			    // WITHERED FREDDY STAGE 1
 			case 'diningarea':
 				{
