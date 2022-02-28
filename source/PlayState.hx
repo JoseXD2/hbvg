@@ -755,7 +755,7 @@ class PlayState extends MusicBeatState
 
 					var balloons:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
-				    balloons.x = -580;
+				        balloons.x = -580;
 					balloons.y = -200;
 					balloons.visible = true;
 					
