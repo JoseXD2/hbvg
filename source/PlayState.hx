@@ -740,42 +740,38 @@ class PlayState extends MusicBeatState
 						stageCurtains.active = false;
 	
 						add(stageCurtains);
-					
-
-		
-
-			}
+			 }
 			// WITHERED FREDDY STAGE 1
 			case 'diningarea':
-			{	
+				{
 					defaultCamZoom = 0.8;
 					curStage = 'diningarea';
 					var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freddystage/stageback','shared'));
 					bg.setGraphicSize(Std.int(bg.width / 0.9));
-
-					bg.x = -600; 
+					
+					bg.x = -600;
 					bg.y = -200;
 					add(bg);
 
-				        var ballons new = FlexSprite:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+					var balloons:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
-					balloons.x = -580;
-					balloons.y = -200;
-					balloons.visible = true;
-
-                    
-                                        var ballons new = FlexSprite:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
-					balloons.setGraphicSize(Std.int(balloons.width * 0));
-					balloons.x = -580;
+				    balloons.x = -580;
 					balloons.y = -200;
 					balloons.visible = true;
 					
 					
-					var ballons new = FlexSprite:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
-					balloons.setGraphicSize(Std.int(balloons.width * 0));
-					balloons.x = -580;
-					balloons.y = -200;
-					balloons.visible = true;		
+					
+					// var happybirthday = new FlxSprite();
+					// happybirthday.frames = Paths.getSparrowAtlas('freddystage/upperBop','shared');
+					// happybirthday.animation.addByPrefix('idle', 'Upper Crowd Bob', 24, true);
+					// happybirthday.antialiasing = true;
+					// happybirthday.x = 0;
+					// happybirthday.y = 0;
+					// add(happybirthday);
+					// happybirthday.animation.play('idle', false);
+					
+					
+					
 				}
 			default:
 			{
