@@ -753,21 +753,21 @@ class PlayState extends MusicBeatState
 					bg.y = -200;
 					add(bg);
 
-				        var ballons:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+				        var ballons:FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
 					balloons.x = -580;
 					balloons.y = -200;
 					balloons.visible = true;
 
                     
-                                        var ballons:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+                                        var ballons:FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
 					balloons.x = -580;
 					balloons.y = -200;
 					balloons.visible = true;
 					
 					
-					var ballons:FlxSprite;().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+					var ballons:FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
 					balloons.x = -580;
 					balloons.y = -200;
