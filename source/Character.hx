@@ -498,6 +498,123 @@ class Character extends FlxSprite
 				addOffset("singDOWN-alt", -30, -27);
 
 				playAnim('idle');
+				
+				playAnim('idle');
+			//SERGIO EVENT
+			case 'vinnocent':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('characters/vincent_assets');
+				frames = tex;
+				animation.addByPrefix('idle', 'vin_idle', 24);
+				animation.addByPrefix('singUP', 'vin_up', 24);
+				animation.addByPrefix('singRIGHT', 'vin_right', 24);
+				animation.addByPrefix('singDOWN', 'vin_down', 24);
+				animation.addByPrefix('singLEFT', 'vin_left', 24);
+
+				addOffset('idle', -115, 180);
+				addOffset("singUP", -6, 250);
+				addOffset("singRIGHT", -90, 137);
+				addOffset("singLEFT", 110, 149);
+				addOffset("singDOWN", 30, 0);
+
+				playAnim('idle');
+			//SERGIO EVENT
+			case 'birdyone':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('characters/birdyone_assets');
+				frames = tex;
+				animation.addByPrefix('idle', 'birdyone_idle', 24);
+				animation.addByPrefix('singUP', 'birdyone_up', 24);
+				animation.addByPrefix('singRIGHT', 'birdyone_right', 24);
+				animation.addByPrefix('singDOWN', 'birdyone_down', 24);
+				animation.addByPrefix('singLEFT', 'birdyone_left', 24);
+				animation.addByPrefix('stand-up', 'birdyone_getup', 24);
+	
+				addOffset('idle', 5, 14);
+				addOffset("singUP", 24, 160);
+				addOffset("singRIGHT", 21, 8);
+				addOffset("singLEFT", 20, -1);
+				addOffset("singDOWN", 20, -10);
+				addOffset('stand-up', 25, 500);
+	
+				playAnim('idle');
+			//SERGIO EVENT
+			case 'shadowbonnie':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('characters/shadowbonnie_assets','shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Mom Idle', 24);
+				animation.addByPrefix('singUP', 'Mom Up Pose', 24);
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24);
+				animation.addByPrefix('singDOWN', 'MOM DOWN POSE', 24);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24);
+				
+	
+				addOffset('idle', -45, 194);
+				addOffset("singUP", 14, 270);
+				addOffset("singRIGHT", -129, 98);
+				addOffset("singLEFT", 140, 168);
+				addOffset("singDOWN", -70, 169);
+				
+	
+				playAnim('idle');
+			case 'realbonnie':
+				// DAD ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('characters/sbonnie','shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Mom Idle', 24);
+				animation.addByPrefix('singUP', 'Mom Up Pose', 24);
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24);
+				animation.addByPrefix('singDOWN', 'MOM DOWN POSE', 24);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24);
+				
+	
+				addOffset('idle', 368, 94);
+				addOffset("singUP", 354, 270);
+				addOffset("singRIGHT", 191, 128);
+				addOffset("singLEFT", 810, 108);
+				addOffset("singDOWN", 380, -11);
+				
+	
+				playAnim('idle');
+			case 'puppet':
+				tex = Paths.getSparrowAtlas('characters/puppet_assets','shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'monster idle', 24);
+				animation.addByPrefix('singUP', 'monster up note', 24);
+				animation.addByPrefix('singRIGHT', 'Monster Right note', 24);
+				animation.addByPrefix('singDOWN', 'monster down', 24);
+				animation.addByPrefix('singLEFT', 'Monster left note', 24);
+				
+	
+				addOffset('idle', -10, -60);
+				addOffset("singUP", 4, -40);
+				addOffset("singRIGHT", -79, -82);
+				addOffset("singLEFT", 30, -82);
+				addOffset("singDOWN", -10, -100);
+
+				playAnim('idle');
+
+
+
+			//WITHERED FREDDY MOD CHARACTERS
+
+			case 'witheredfreddy':
+				tex = Paths.getSparrowAtlas('characters/witheredfreddy_assets', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				addOffset('idle', 54, -40);
+				addOffset("singUP", 64, 33);
+				addOffset("singRIGHT", 71, -12);
+				addOffset("singLEFT", 60, -32);
+				addOffset("singDOWN", 50, -60);
+
+				playAnim('idle');
 		}
 
 		dance();
