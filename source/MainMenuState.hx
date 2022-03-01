@@ -1,267 +1,497 @@
+//SERGIO EVENT
+
 package;
 
-import flixel.input.gamepad.FlxGamepad;
-import Controls.KeyboardScheme;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
-import flixel.effects.FlxFlicker;
+import flixel.FlxState;
+import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.TransitionData;
+import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxGroup;
+import flixel.input.gamepad.FlxGamepad;
+import flixel.math.FlxPoint;
+import flixel.math.FlxRect;
+import flixel.system.FlxSound;
+import flixel.system.ui.FlxSoundTray;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import io.newgrounds.NG;
 import lime.app.Application;
+import openfl.Assets;
 
 #if windows
 import Discord.DiscordClient;
 #end
 
+#if cpp
+import sys.thread.Thread;
+#end
+
 using StringTools;
 
-class MainMenuState extends MusicBeatState
+class FreddyMenu extends MusicBeatState
 {
-	var curSelected:Int = 0;
+	static var initialized:Bool = false;
 
-	var menuItems:FlxTypedGroup<FlxSprite>;
+	var weekData:Array<Dynamic> = [
+		['Tutorial'],
+		['Bopeebo', 'Fresh', 'Dad Battle'],
+		['Spookeez', 'South', "Monster"],
+		['Pico', 'Philly Nice', "Blammed"],
+		['Satin Panties', "High", "Milf"],
+		['Cocoa', 'Eggnog', 'Winter Horrorland'],
+		['Senpai', 'Roses', 'Thorns'],
+		['Nightshift', 'Flashinglights', 'Shadows']
+	];
 
-	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options'];
-	#else
-	var optionShit:Array<String> = ['story mode', 'freeplay'];
-	#end
+	var blackScreen:FlxSprite;
+	var credGroup:FlxGroup;
+	var credTextShit:Alphabet;
+	var textGroup:FlxGroup;
+	var ngSpr:FlxSprite;
 
-	var newGaming:FlxText;
-	var newGaming2:FlxText;
-	public static var firstStart:Bool = true;
+	var curWacky:Array<String> = [];
 
-	// version of engine in project.xml :)
+	var wackyImage:FlxSprite;
 
-	var magenta:FlxSprite;
-	var camFollow:FlxObject;
-	public static var finishedFunnyMove:Bool = false;
+	//BIRDY MENU VARIABLES
 
-	override function create()
+	var freddybg:FlxSprite;
+
+	var staticeffect:FlxSprite;
+
+	var songlist:FlxSprite;
+
+	var weekname:FlxSprite;
+	
+	var normalmode:FlxSprite;
+	var easymode:FlxSprite;
+	var hardmode:FlxSprite;
+
+	var goback:FlxSprite;
+
+	var gobutton:FlxSprite;
+
+
+	var prevbutton:FlxSprite;
+	var nextbutton:FlxSprite;
+
+	var fade:FlxSprite;
+	var curWeek:Int = 7;
+
+	override public function create():Void
 	{
+		//BIRDY DECORATIONS YK
+		
+		freddybg = new FlxSprite(0, 0);
+		freddybg.frames = Paths.getSparrowAtlas('menuimages/fedy','shared');
+		freddybg.animation.addByPrefix('idle', 'BF idle dance white', 24, true);
+		freddybg.animation.addByPrefix('confirm', 'BF HEY!!', 24, false);
+
+
+
+		staticeffect = new FlxSprite(0, 0);
+		staticeffect.frames = Paths.getSparrowAtlas('static','shared');
+		staticeffect.animation.addByPrefix('idle', 'static_effect', 24, true);
+
+
+
+		songlist = new FlxSprite(0, 0);
+		songlist.loadGraphic(Paths.image('menuimages/songmenu','shared'));
+
+		nextbutton = new FlxSprite(900, 80);
+		nextbutton.loadGraphic(Paths.image('menuimages/next','shared'));
+		nextbutton.setGraphicSize(Std.int(nextbutton.width + 6));
+		prevbutton = new FlxSprite(850, 80);
+		prevbutton.loadGraphic(Paths.image('menuimages/prev','shared'));
+		prevbutton.setGraphicSize(Std.int(prevbutton.width + 6));
+
+		weekname = new FlxSprite(0, 0);
+		weekname.loadGraphic(Paths.image('menuimages/curweekname','shared'));
+
+		normalmode = new FlxSprite(0, 0);
+		normalmode.loadGraphic(Paths.image('menuimages/normaldif','shared'));
+		easymode = new FlxSprite(0, 0);
+		easymode.loadGraphic(Paths.image('menuimages/easydif','shared'));
+		hardmode = new FlxSprite(0, 0);
+		hardmode.loadGraphic(Paths.image('menuimages/harddif','shared'));
+
+		goback = new FlxSprite(0, 0);
+		goback.loadGraphic(Paths.image('menuimages/xback','shared'));
+
+		gobutton = new FlxSprite(500, 600);
+		gobutton.loadGraphic(Paths.image('menuimages/go','shared'));
+
+		fade = new FlxSprite(0, 0);
+		fade.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		fade.width = FlxG.width;
+		fade.height = FlxG.height;
+
+
+
+		new FlxTimer().start(7, function(tmr:FlxTimer)
+		{
+			FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.03}, 3, {ease: FlxEase.circOut, type: ONESHOT});
+			new FlxTimer().start(5, function(tmr:FlxTimer)
+			{
+				FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom - 0.03}, 3, {ease: FlxEase.circOut, type: ONESHOT});
+			});
+		}, 0);
+		
+
+
+
+		
+
+
+		
+
+		
+
+
+
+		
+		
+		
+		add(freddybg);
+		add(weekname);
+		add(songlist);
+		add(goback);
+		add(gobutton);
+		add(normalmode);
+		add(easymode);
+		add(hardmode);
+		add(nextbutton);
+		add(prevbutton);
+		add(staticeffect);
+		add(fade);
+
+
+		freddybg.animation.play('idle');
+		staticeffect.animation.play('idle');
+		staticeffect.alpha = 1;
+		normalmode.visible = true;
+		easymode.visible = false;
+		hardmode.visible = false;
+		fade.alpha = 0;
+
+		new FlxTimer().start(0.1, function(tmr:FlxTimer)
+		{
+			FlxTween.tween(staticeffect, {alpha: 0.1}, 1, {ease: FlxEase.circOut, type: ONESHOT});
+		});
+
+
+
+
+		FlxG.mouse.visible = true;
+
+
+
+		
+
+
+
+		
+
+		
+		
+		#if polymod
+		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
+		#end
+		
+		#if sys
+		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
+			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
+		#end
+
+		@:privateAccess
+		{
+			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
+		}
+		
+		PlayerSettings.init();
+
 		#if windows
-		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
+		DiscordClient.initialize();
+
+		Application.current.onExit.add (function (exitCode) {
+			DiscordClient.shutdown();
+		 });
+		 
 		#end
 
-		if (!FlxG.sound.music.playing)
-		{
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
-		}
+		
 
-		persistentUpdate = persistentDraw = true;
-
-		var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('menuBG'));
-		bg.scrollFactor.x = 0;
-		bg.scrollFactor.y = 0.10;
-		bg.setGraphicSize(Std.int(bg.width * 1.1));
-		bg.updateHitbox();
-		bg.screenCenter();
-		bg.antialiasing = true;
-		add(bg);
-
-		camFollow = new FlxObject(0, 0, 1, 1);
-		add(camFollow);
-
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
-		magenta.scrollFactor.x = 0;
-		magenta.scrollFactor.y = 0.10;
-		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		magenta.visible = false;
-		magenta.antialiasing = true;
-		magenta.color = 0xFFfd719b;
-		add(magenta);
-		// magenta.scrollFactor.set();
-
-		menuItems = new FlxTypedGroup<FlxSprite>();
-		add(menuItems);
-
-		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
-
-		for (i in 0...optionShit.length)
-		{
-			var menuItem:FlxSprite = new FlxSprite(0, FlxG.height * 1.6);
-			menuItem.frames = tex;
-			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
-			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
-			menuItem.animation.play('idle');
-			menuItem.ID = i;
-			menuItem.screenCenter(X);
-			menuItems.add(menuItem);
-			menuItem.scrollFactor.set();
-			menuItem.antialiasing = true;
-			if (firstStart)
-				FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.25) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
-					{ 
-						finishedFunnyMove = true; 
-						changeItem();
-					}});
-			else
-				menuItem.y = 60 + (i * 160);
-		}
-
-		firstStart = false;
-
-		FlxG.camera.follow(camFollow, null, 0.60 * (60 / FlxG.save.data.fpsCap));
-
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "FNF 0.2.7.1 | Kade Engine 1.5.4" #if mobileC + " | KE Android " + Application.current.meta.get('version') + " - Ported by Nibi" #else + " - Edited by TheLeerName " + "(" + Application.current.meta.get('version') + ")" #end, 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-
-		// NG.core.calls.event.logEvent('swag').send();
-
-
-		if (FlxG.save.data.dfjk)
-			controls.setKeyboardScheme(KeyboardScheme.Solo, true);
-		else
-			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
-
-		changeItem();
-
-		#if mobileC
-		addVirtualPad(UP_DOWN, A_B);
-		#end
+		// DEBUG BULLSHIT
 
 		super.create();
+
+		// NGio.noLogin(APIStuff.API);
+
+		#if ng
+		var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
+		trace('NEWGROUNDS LOL');
+		#end
+
+		FlxG.save.bind('funkin', 'ninjamuffin99');
+
+		KadeEngineData.initSave();
+
+		Highscore.load();
+
+		
+
+		#if FREEPLAY
+		FlxG.switchState(new FreeplayState());
+		#elseif CHARTING
+		FlxG.switchState(new ChartingState());
+		#else
+		new FlxTimer().start(1, function(tmr:FlxTimer)
+		{
+			startIntro();
+		});
+		#end
 	}
 
-	var selectedSomethin:Bool = false;
+	var logoBl:FlxSprite;
+	var gfDance:FlxSprite;
+	var danceLeft:Bool = false;
+	var titleText:FlxSprite;
+
+	function startIntro()
+	{
+		if (!initialized)
+		{
+			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
+			diamond.persist = true;
+			diamond.destroyOnNoUse = false;
+
+			
+
+			// HAD TO MODIFY SOME BACKEND SHIT
+			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
+			// https://github.com/HaxeFlixel/flixel-addons/pull/348
+
+			// var music:FlxSound = new FlxSound();
+			// music.loadStream(Paths.music('freakyMenu'));
+			// FlxG.sound.list.add(music);
+			// music.play();
+			
+		}
+
+		
+	}
+
+	
+
+	var transitioning:Bool = false;
+	var selectedWeek:Bool = false;
+
+	
 
 	override function update(elapsed:Float)
 	{
-		if (FlxG.sound.music.volume < 0.8)
+		
+	
+
+		if(FlxG.keys.justPressed.ENTER)
 		{
-			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
+			freddybg.animation.play('confirm');
+
+			FlxG.sound.play(Paths.sound('confirmMenu', 'preload'));
+			FlxG.sound.play(Paths.sound('robot', 'shared'), 1, false);
+
+			
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+			{
+				FlxTween.tween(staticeffect, {alpha: 1}, 1, {ease: FlxEase.circOut, type: ONESHOT});
+				FlxTween.tween(fade, {alpha: 1}, 1, {ease: FlxEase.circOut, type: ONESHOT});
+				FlxG.sound.music.fadeOut(1, 0);
+			    new FlxTimer().start(3, function(tmr:FlxTimer)
+				{
+					if(normalmode.visible == true && hardmode.visible == false && easymode.visible == false)
+					{
+						
+
+						FlxG.switchState(new CutsceneOne());
+						
+					}
+					else if(normalmode.visible == false && hardmode.visible == true && easymode.visible == false)
+					{
+						// PlayState.SONG = Song.loadFromJson("nightshift-hard","nightshift-hard");
+			            // PlayState.isStoryMode = true;
+			            // PlayState.storyDifficulty = 1;
+
+			            // PlayState.storyWeek = 8;
+			            // LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.switchState(new CutsceneOneHard());
+					}
+					else if(normalmode.visible == false && hardmode.visible == false && easymode.visible == true)
+					{
+						// PlayState.SONG = Song.loadFromJson("nightshift-easy","nightshift-easy");
+			            // PlayState.isStoryMode = true;
+			            // PlayState.storyDifficulty = 1;
+
+			            // PlayState.storyWeek = 9;
+			            // LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.switchState(new CutsceneOneEasy());
+					}
+						
+				});
+			});
+		}
+		if(FlxG.keys.justPressed.X)
+		{
+			FlxG.sound.play(Paths.sound('clickone','shared'));
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+			{
+				FlxTween.tween(staticeffect, {alpha: 1}, 1, {ease: FlxEase.circOut, type: ONESHOT});
+				new FlxTimer().start(3, function(tmr:FlxTimer)
+				{
+					FlxG.switchState(new AnimatronicMenu());
+							
+				});
+			});
+		}
+		
+
+		if(FlxG.mouse.overlaps(nextbutton))
+		{
+			nextbutton.color = FlxColor.PURPLE;
+
+			if(FlxG.mouse.justPressed)
+			{
+				FlxG.sound.play(Paths.sound('clickone','shared'));
+			}
+		}
+		else
+		{
+			nextbutton.color = FlxColor.WHITE;
 		}
 
-		if (!selectedSomethin)
+		if(FlxG.mouse.overlaps(prevbutton))
 		{
-			var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
-			if (gamepad != null)
+			prevbutton.color = FlxColor.PURPLE;
+			if(FlxG.mouse.justPressed)
 			{
-				if (gamepad.justPressed.DPAD_UP)
-					changeItem(-1);
-				if (gamepad.justPressed.DPAD_DOWN)
-					changeItem(1);
+				FlxG.sound.play(Paths.sound('clickone','shared'));
 			}
+		}
+		else
+		{
+			prevbutton.color = FlxColor.WHITE;
+		}
 
-			if (controls.UP_P)
-				changeItem(-1);
-
-			if (controls.DOWN_P)
-				changeItem(1);
-
-			if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
-				FlxG.switchState(new TitleState());
-
-			if (controls.ACCEPT)
+		if(FlxG.mouse.overlaps(gobutton))
+		{
+			gobutton.color = FlxColor.GREEN;
+			if(FlxG.mouse.justPressed)
 			{
-				if (optionShit[curSelected] == 'donate')
-				{
-					fancyOpenURL("https://ninja-muffin24.itch.io/funkin");
-				}
-				else
-				{
-					selectedSomethin = true;
-					FlxG.sound.play(Paths.sound('confirmMenu'));
-					
-					if (FlxG.save.data.flashing)
-						FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+				freddybg.animation.play('confirm');
 
-					menuItems.forEach(function(spr:FlxSprite)
-					{
-						if (curSelected != spr.ID)
-						{
-							FlxTween.tween(spr, {alpha: 0}, 1.3, {
-								ease: FlxEase.quadOut,
-								onComplete: function(twn:FlxTween)
-								{
-									spr.kill();
-								}
-							});
-						}
-						else
-						{
-							if (FlxG.save.data.flashing)
-							{
-								FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-								{
-									goToState();
-								});
-							}
-							else
-							{
-								new FlxTimer().start(1, function(tmr:FlxTimer)
-								{
-									goToState();
-								});
-							}
-						}
-					});
-				}
+			    FlxG.sound.play(Paths.sound('confirmMenu', 'preload'));
+				FlxG.sound.play(Paths.sound('robot', 'shared'));
+
+			
+			    new FlxTimer().start(1, function(tmr:FlxTimer)
+			    {
+				    FlxTween.tween(staticeffect, {alpha: 1}, 1, {ease: FlxEase.circOut, type: ONESHOT});
+				    FlxTween.tween(fade, {alpha: 1}, 1, {ease: FlxEase.circOut, type: ONESHOT});
+				    FlxG.sound.music.fadeOut(1, 0);
+			        new FlxTimer().start(3, function(tmr:FlxTimer)
+				    {
+					    if(normalmode.visible == true && hardmode.visible == false && easymode.visible == false)
+					    {
+						    FlxG.switchState(new CutsceneOne());
+					    }
+					    else if(normalmode.visible == false && hardmode.visible == true && easymode.visible == false)
+					    {
+						    FlxG.switchState(new CutsceneOneHard());
+					    }
+					    else if(normalmode.visible == false && hardmode.visible == false && easymode.visible == true)
+					    {
+						    FlxG.switchState(new CutsceneOneEasy());
+					    }
+						
+				    });
+			    });
+			}
+		}
+		else
+		{
+			gobutton.color = FlxColor.WHITE;
+		}
+		
+
+		if(FlxG.mouse.overlaps(nextbutton) && normalmode.visible == true && easymode.visible == false && hardmode.visible == false)
+		{
+			if(FlxG.mouse.justPressed)
+			{
+				normalmode.visible = false;
+			    easymode.visible = false;
+			    hardmode.visible = true;
+			}
+		}
+		else if(FlxG.mouse.overlaps(nextbutton) && normalmode.visible == false && easymode.visible == false && hardmode.visible == true)
+		{
+			if(FlxG.mouse.justPressed)
+			{
+				normalmode.visible = false;
+			    easymode.visible = true;
+			    hardmode.visible = false;
+			}
+		}
+		else if(FlxG.mouse.overlaps(nextbutton) && normalmode.visible == false && easymode.visible == true && hardmode.visible == false)
+		{
+			if(FlxG.mouse.justPressed)
+			{
+				normalmode.visible = true;
+			    easymode.visible = false;
+			    hardmode.visible = false;
+			}
+		}
+
+
+
+		if(FlxG.mouse.overlaps(prevbutton) && normalmode.visible == true && easymode.visible == false && hardmode.visible == false)
+		{
+			if(FlxG.mouse.justPressed)
+			{
+				normalmode.visible = false;
+				easymode.visible = true;
+				hardmode.visible = false;
+			}
+		}
+		else if(FlxG.mouse.overlaps(prevbutton) && normalmode.visible == false && easymode.visible == false && hardmode.visible == true)
+		{
+			if(FlxG.mouse.justPressed)
+			{
+				normalmode.visible = true;
+				easymode.visible = false;
+				hardmode.visible = false;
+			}
+		}
+		else if(FlxG.mouse.overlaps(prevbutton) && normalmode.visible == false && easymode.visible == true && hardmode.visible == false)
+		{
+			if(FlxG.mouse.justPressed)
+			{
+				normalmode.visible = false;
+				easymode.visible = false;
+				hardmode.visible = true;
 			}
 		}
 
 		super.update(elapsed);
-
-		menuItems.forEach(function(spr:FlxSprite)
-		{
-			spr.screenCenter(X);
-		});
 	}
+
 	
-	function goToState()
-	{
-		var daChoice:String = optionShit[curSelected];
-
-		switch (daChoice)
-		{
-			case 'story mode':
-				FlxG.switchState(new StoryMenuState());
-				trace("Story Menu Selected");
-			case 'freeplay':
-				FlxG.switchState(new FreeplayState());
-
-				trace("Freeplay Menu Selected");
-
-			case 'options':
-				FlxG.switchState(new OptionsMenu());
-		}
-	}
-
-	function changeItem(huh:Int = 0)
-	{
-		FlxG.sound.play(Paths.sound('scrollMenu'));
-		if (finishedFunnyMove)
-		{
-			curSelected += huh;
-
-			if (curSelected >= menuItems.length)
-				curSelected = 0;
-			if (curSelected < 0)
-				curSelected = menuItems.length - 1;
-		}
-		menuItems.forEach(function(spr:FlxSprite)
-		{
-			spr.animation.play('idle');
-
-			if (spr.ID == curSelected && finishedFunnyMove)
-			{
-				spr.animation.play('selected');
-				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
-			}
-
-			spr.updateHitbox();
-		});
-	}
 }
+
+
