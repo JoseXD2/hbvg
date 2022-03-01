@@ -854,12 +854,12 @@ class PlayState extends MusicBeatState
 					add(minigamefive);
 					minigamefive.visible = false;
 
-					purplething:FlxSprite = new FlxSprite(0, 0);
+					var purplething:FlxSprite = new FlxSprite(0, 0);
 					purplething.loadGraphic(Paths.image('freddystage/purplevoid','shared'));
 					purplething.setGraphicSize(Std.int(purplething.width * 2));
 					add(purplething);
 
-					cover:FlxSprite = new FlxSprite(0, 0);
+					var cover:FlxSprite = new FlxSprite(0, 0);
 		                        cover.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		                        cover.setGraphicSize(Std.int(minigamefive.width * 7));
 					add(cover);
