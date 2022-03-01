@@ -55,24 +55,21 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 		}
 
-		persistentUpdate = persistentDraw = true
-		
-                var freddybg:FlxSprite = new FlxSprite;(0, 0);
-		freddybg.frames = Paths.getSparrowAtlas('menuimages/fedy','shared');
-		freddybg.animation.addByPrefix('idle', 'BF idle dance white', 24, true);
-		freddybg.animation.addByPrefix('confirm', 'BF HEY!!', 24, false);
-		
-		
-		
-		var staticeffect:FlxSprite = new FlxSprite;(0, 0);
-		staticeffect.frames = Paths.getSparrowAtlas('static','shared');
-		staticeffect.animation.addByPrefix('idle', 'static_effect', 24, true);
-		
+		persistentUpdate = persistentDraw = true;
+
+		var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('menuBG'));
+		bg.scrollFactor.x = 0;
+		bg.scrollFactor.y = 0.10;
+		bg.setGraphicSize(Std.int(bg.width * 1.1));
+		bg.updateHitbox();
+		bg.screenCenter();
+		bg.antialiasing = true;
+		add(bg);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(Paths.image('menuDesat'));
+		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		magenta.scrollFactor.x = 0;
 		magenta.scrollFactor.y = 0.10;
 		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
