@@ -57,14 +57,14 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true
 		
-                var freddybg:FlxSprite = new FlxSprite(0, 0);
+                var freddybg:FlxSprite = new FlxSprite;(0, 0);
 		freddybg.frames = Paths.getSparrowAtlas('menuimages/fedy','shared');
 		freddybg.animation.addByPrefix('idle', 'BF idle dance white', 24, true);
 		freddybg.animation.addByPrefix('confirm', 'BF HEY!!', 24, false);
 		
 		
 		
-		var staticeffect:FlxSprite = new FlxSprite(0, 0);
+		var staticeffect:FlxSprite = new FlxSprite;(0, 0);
 		staticeffect.frames = Paths.getSparrowAtlas('static','shared');
 		staticeffect.animation.addByPrefix('idle', 'static_effect', 24, true);
 		
