@@ -121,6 +121,19 @@ class Note extends FlxSprite
 								//if(FlxG.save.data.downscroll)
 									//flipY = true;
 								x -= 50;
+							case 2:
+							{
+								frames = Paths.getSparrowAtlas('NOTE_loose');
+								animation.addByPrefix('greenScroll', 'green');
+								animation.addByPrefix('redScroll', 'red');
+								animation.addByPrefix('blueScroll', 'blue');
+								animation.addByPrefix('purpleScroll', 'purple');
+ 
+								
+ 
+								setGraphicSize(Std.int(width / 1.5));
+								updateHitbox();
+								antialiasing = true;
 							}
 							default:
 							{
