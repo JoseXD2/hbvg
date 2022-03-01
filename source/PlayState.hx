@@ -769,6 +769,44 @@ class PlayState extends MusicBeatState
 					// happybirthday.y = 0;
 					// add(happybirthday);
 					// happybirthday.animation.play('idle', false);
+				}
+			// PUPPET STAGE ASSETS
+			case 'puppetstage':
+				{
+					defaultCamZoom = 0.8;
+					curStage = 'puppetstage';
+					var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freddystage/puppetbg','shared'));
+					
+					bg.setGraphicSize(Std.int(bg.width * 2));
+					bg.x = -300;
+					bg.y = -300;
+					add(bg);
+
+					var animatronicsbg:FlxSprite = new FlxSprite(-170, -300);
+					animatronicsbg.frames = Paths.getSparrowAtlas('freddystage/Animatronics_BG','shared');
+					animatronicsbg.animation.addByPrefix('idle', 'Bottom Level Boppers', 24, true);
+					animatronicsbg.animation.play('idle');
+					animatronicsbg.setGraphicSize(Std.int(bg.width * 1.2));
+					
+					add(animatronicsbg);
+
+
+					var balloons:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+					balloons.setGraphicSize(Std.int(balloons.width * 0));
+					balloons.x = -580;
+					balloons.y = -200;
+					balloons.visible = true;
+					
+
+					var happybirthday:FlxSprite = new FlxSprite();
+					happybirthday.frames = Paths.getSparrowAtlas('freddystage/upperBop','shared');
+					happybirthday.animation.addByPrefix('idle', 'Upper Crowd Bob', 24, true);
+					happybirthday.antialiasing = true;
+					happybirthday.x = -200;
+					happybirthday.y = -200;
+					add(happybirthday);
+					happybirthday.animation.play('idle', false);
+
 					
 					
 					
