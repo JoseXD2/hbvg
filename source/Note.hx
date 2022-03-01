@@ -121,7 +121,7 @@ class Note extends FlxSprite
 								//if(FlxG.save.data.downscroll)
 									//flipY = true;
 								x -= 50;
-							case 2:
+							case "NOTE_loose":
 							{
 								frames = Paths.getSparrowAtlas('NOTE_loose');
 								animation.addByPrefix('greenScroll', 'green');
