@@ -806,6 +806,65 @@ class PlayState extends MusicBeatState
 					happybirthday.y = -200;
 					add(happybirthday);
 					happybirthday.animation.play('idle', false);
+			}
+			// SHADOW BONNIE STAGE ASSETS
+			case 'minigames':
+				{
+					// CODE
+					defaultCamZoom = 0.5;
+					curStage = 'minigames';
+					//VARIABLES AND ASSET CREATION
+
+
+					// MINIGAME 1 BACKGROUND
+
+
+					var minigameone:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/sb','shared'));
+					minigameone.setGraphicSize(Std.int(minigameone.width * 1.7));
+					minigameone.x = 0;
+					minigameone.y = 0;
+					add(minigameone);
+					minigameone.visible = false;
+
+
+					var minigametwo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/mangle','shared'));
+					minigametwo.setGraphicSize(Std.int(minigametwo.width * 1.7));
+					minigametwo.x = 0;
+					minigametwo.y = 0;
+					add(minigametwo);
+					minigametwo.visible = false;
+
+					var minigamethree:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/fredbear','shared'));
+					minigamethree.setGraphicSize(Std.int(minigamethree.width * 1.7));
+					minigamethree.x = 0;
+					minigamethree.y = 0;
+					add(minigamethree);
+					minigamethree.visible = false;
+
+					var minigamefour:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/bb','shared'));
+					minigamefour.setGraphicSize(Std.int(minigamefour.width * 1.7));
+					minigamefour.x = 0;
+					minigamefour.y = 0;
+					add(minigamefour);
+					minigamefour.visible = false;
+
+					var minigamefive:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/t_chica','shared'));
+					minigamefive.setGraphicSize(Std.int(minigamefive.width * 1.7));
+					minigamefive.x = 0;
+					add(minigamefive);
+					minigamefive.visible = false;
+
+					purplething:FlxSprite = new FlxSprite(0, 0);
+					purplething.loadGraphic(Paths.image('freddystage/purplevoid','shared'));
+					purplething.setGraphicSize(Std.int(purplething.width * 2));
+					add(purplething);
+
+					cover:FlxSprite = new FlxSprite(0, 0);
+		                        cover.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		                        cover.setGraphicSize(Std.int(minigamefive.width * 7));
+					add(cover);
+					cover.alpha = 1;
+
 
 					
 					
