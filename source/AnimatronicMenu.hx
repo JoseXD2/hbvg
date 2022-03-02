@@ -27,7 +27,7 @@ import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
 
-#if windows
+#if android
 import Discord.DiscordClient;
 #end
 
@@ -79,37 +79,37 @@ class AnimatronicMenu extends MusicBeatState
 	{
 		//BIRDY DECORATIONS YK
 		
-		bgone = new FlxSprite(0, 0);
+		var bgone:FlxSprite = new FlxSprite(0, 0);
 		bgone.loadGraphic(Paths.image('mainmenu/menu1','shared'));
-		bgtwo = new FlxSprite(0, 0);
+		var bgtwo:FlxSprite = new FlxSprite(0, 0);
 		bgtwo.loadGraphic(Paths.image('mainmenu/menu2','shared'));
-		bgthree = new FlxSprite(0, 0);
+		var bgthree:FlxSprite = new FlxSprite(0, 0);
 		bgthree.loadGraphic(Paths.image('mainmenu/menu3','shared'));
-		bgfour = new FlxSprite(0, 0);
+		var bgfour:FlxSprite = new FlxSprite(0, 0);
 		bgfour.loadGraphic(Paths.image('mainmenu/menu4','shared'));
 
-		title = new FlxSprite(-80, -20);
+		var title:FlxSprite = new FlxSprite(-80, -20);
 		title.loadGraphic(Paths.image('menuimages/menulogo','shared'));
 		title.setGraphicSize(Std.int(title.width / 1.5));
 
-		newgame = new FlxSprite(30, 320);
+		var newgame:FlxSprite = new FlxSprite(30, 320);
 		newgame.loadGraphic(Paths.image('menuimages/newgame','shared'));
 
-		freeplaybutton = new FlxSprite(30, 400);
+		var freeplaybutton:FlxSrite = new FlxSprite(30, 400);
 		freeplaybutton.loadGraphic(Paths.image('menuimages/freeplay','shared'));
 
-		settingsbutton = new FlxSprite(30, 480);
+		var settingsbutton:FlxSprite = new FlxSprite(30, 480);
 		settingsbutton.loadGraphic(Paths.image('menuimages/settings','shared'));
 
-		exitbutton = new FlxSprite(30, 560);
+		var exitbutton:FlxSprite = new FlxSprite(30, 560);
 		exitbutton.loadGraphic(Paths.image('menuimages/exit','shared'));
 
-		sureexit = new FlxSprite(-300, -200);
+		var sureexit:FlxSprite = new FlxSprite(-300, -200);
 		sureexit.loadGraphic(Paths.image('menuimages/warningexit','shared'));
 		sureexit.setGraphicSize(Std.int(sureexit.width / 2));
 		sureexit.alpha = 0;
 
-		togglething = new FlxSprite(0, 0);
+		var togglething:FlxSprite = new FlxSprite(0, 0);
 		togglething.loadGraphic(Paths.image('menuimages/toggle','shared'));
 
 
@@ -117,12 +117,12 @@ class AnimatronicMenu extends MusicBeatState
 
 
 
-		staticeffect = new FlxSprite(0, 0);
+		var staticeffect:FlxSprite = new FlxSprite(0, 0);
 		staticeffect.frames = Paths.getSparrowAtlas('static','shared');
 		staticeffect.animation.addByPrefix('idle', 'static_effect', 24, true);
 
 
-		fade = new FlxSprite(0, 0);
+		var fade:FlxSprite = new FlxSprite(0, 0);
 		fade.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		fade.width = FlxG.width;
 		fade.height = FlxG.height;
