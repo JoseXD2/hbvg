@@ -121,7 +121,7 @@ class Note extends FlxSprite
 								//if(FlxG.save.data.downscroll)
 									//flipY = true;
 								x -= 50;
-							case 2:
+							case "loose":
 							{
 								frames = Paths.getSparrowAtlas('NOTE_loose');
 								animation.addByPrefix('greenScroll', 'green');
@@ -135,7 +135,7 @@ class Note extends FlxSprite
 								updateHitbox();
 								antialiasing = true;
 								}
-							case 3:
+							case "danger":
 							{
 								frames = Paths.getSparrowAtlas('NOTE_danger');
 								animation.addByPrefix('greenScroll', 'green');
@@ -149,7 +149,7 @@ class Note extends FlxSprite
 								updateHitbox();
 								antialiasing = true;
 								}
-							case 4:
+							case "charge":
 							{
 								frames = Paths.getSparrowAtlas('NOTE_charge');
 								animation.addByPrefix('greenScroll', 'green');
@@ -163,7 +163,7 @@ class Note extends FlxSprite
 								updateHitbox();
 								antialiasing = true;
 							}
-							case 5:
+							case "remnant":
 							{
 								frames = Paths.getSparrowAtlas('NOTE_remnant');
 								animation.addByPrefix('greenScroll', 'green');
