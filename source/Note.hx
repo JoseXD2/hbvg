@@ -121,61 +121,6 @@ class Note extends FlxSprite
 								//if(FlxG.save.data.downscroll)
 									//flipY = true;
 								x -= 50;
-							case "loose":
-							{
-								frames = Paths.getSparrowAtlas('NOTE_loose');
-								animation.addByPrefix('greenScroll', 'green');
-								animation.addByPrefix('redScroll', 'red');
-								animation.addByPrefix('blueScroll', 'blue');
-								animation.addByPrefix('purpleScroll', 'purple');
-								
-								
-								
-								setGraphicSize(Std.int(width / 1.5));
-								updateHitbox();
-								antialiasing = true;
-								}
-							case "danger":
-							{
-								frames = Paths.getSparrowAtlas('NOTE_danger');
-								animation.addByPrefix('greenScroll', 'green');
-								animation.addByPrefix('redScroll', 'red');
-								animation.addByPrefix('blueScroll', 'blue');
-								animation.addByPrefix('purpleScroll', 'purple');
-								
-								
-								
-								setGraphicSize(Std.int(width / 1.5));
-								updateHitbox();
-								antialiasing = true;
-								}
-							case "charge":
-							{
-								frames = Paths.getSparrowAtlas('NOTE_charge');
-								animation.addByPrefix('greenScroll', 'green');
-								animation.addByPrefix('redScroll', 'red');
-								animation.addByPrefix('blueScroll', 'blue');
-								animation.addByPrefix('purpleScroll', 'purple');
-								
-								
-						
-								setGraphicSize(Std.int(width / 1.5));
-								updateHitbox();
-								antialiasing = true;
-							}
-							case "remnant":
-							{
-								frames = Paths.getSparrowAtlas('NOTE_remnant');
-								animation.addByPrefix('greenScroll', 'green');
-								animation.addByPrefix('redScroll', 'red');
-								animation.addByPrefix('blueScroll', 'blue');
-								animation.addByPrefix('purpleScroll', 'purple');
- 
-								
- 
-								setGraphicSize(Std.int(width / 1.5));
-								updateHitbox();
-								antialiasing = true;
 							}
 							default:
 							{
