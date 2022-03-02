@@ -87,7 +87,7 @@ class MainMenuState extends MusicBeatState
 		normalmode.loadGraphic(Paths.image('menuimages/normaldif','shared'));
 		var easymode:FlxSprite = new FlxSprite(0, 0);
 		easymode.loadGraphic(Paths.image('menuimages/easydif','shared'));
-		hardmode = new FlxSprite(0, 0);
+		var hardmode = new FlxSprite(0, 0);
 		hardmode.loadGraphic(Paths.image('menuimages/harddif','shared'));
 
 		var goback:FlxSprite = new FlxSprite(0, 0);
