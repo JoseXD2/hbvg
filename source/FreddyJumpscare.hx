@@ -99,7 +99,7 @@ class FreddyJumpscare extends MusicBeatSubstate
 		FlxCamera.defaultCameras = [camGame];
 
 
-		jumpscare:FlxSprite = new FlxSprite(0, 0);
+		jumpscare = new FlxSprite(0, 0);
 		jumpscare.frames = Paths.getSparrowAtlas('jumpscares/jump_fred','shared');
 		jumpscare.animation.addByPrefix('idle', 'BF dies', 24, false);
 		jumpscare.animation.addByPrefix('death', 'BF Dead Loop', 24, false);
@@ -111,7 +111,7 @@ class FreddyJumpscare extends MusicBeatSubstate
 		jumpscare.visible = false;
 
 
-		staticeffect:FlxSprite = new FlxSprite(0, 0);
+		staticeffect = new FlxSprite(0, 0);
 		staticeffect.frames = Paths.getSparrowAtlas('static','shared');
 		staticeffect.animation.addByPrefix('idle', 'static_effect', 24, true);
 		staticeffect.cameras = [camHUD];

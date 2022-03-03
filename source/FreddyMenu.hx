@@ -90,46 +90,46 @@ class FreddyMenu extends MusicBeatState
 	{
 		//BIRDY DECORATIONS YK
 		
-		freddybg:FlxSprite = new FlxSprite(0, 0);
+		freddybg = new FlxSprite(0, 0);
 		freddybg.frames = Paths.getSparrowAtlas('menuimages/fedy','shared');
 		freddybg.animation.addByPrefix('idle', 'BF idle dance white', 24, true);
 		freddybg.animation.addByPrefix('confirm', 'BF HEY!!', 24, false);
 
 
 
-		staticeffect:FlxSprite = new FlxSprite(0, 0);
+		staticeffect = new FlxSprite(0, 0);
 		staticeffect.frames = Paths.getSparrowAtlas('static','shared');
 		staticeffect.animation.addByPrefix('idle', 'static_effect', 24, true);
 
 
 
-		songlist:FlxSprite = new FlxSprite(0, 0);
+		songlist = new FlxSprite(0, 0);
 		songlist.loadGraphic(Paths.image('menuimages/songmenu','shared'));
 
-		nextbutton:FlxSprite = new FlxSprite(900, 80);
+		nextbutton = new FlxSprite(900, 80);
 		nextbutton.loadGraphic(Paths.image('menuimages/next','shared'));
 		nextbutton.setGraphicSize(Std.int(nextbutton.width + 6));
-		prevbutton:FlxSprite = new FlxSprite(850, 80);
+		prevbutton = new FlxSprite(850, 80);
 		prevbutton.loadGraphic(Paths.image('menuimages/prev','shared'));
 		prevbutton.setGraphicSize(Std.int(prevbutton.width + 6));
 
-		weekname:FlxSprite = new FlxSprite(0, 0);
+		weekname = new FlxSprite(0, 0);
 		weekname.loadGraphic(Paths.image('menuimages/curweekname','shared'));
 
-		normalmode:FlxSprite = new FlxSprite(0, 0);
+		normalmode = new FlxSprite(0, 0);
 		normalmode.loadGraphic(Paths.image('menuimages/normaldif','shared'));
-		easymode:FlxSprite = new FlxSprite(0, 0);
+		easymode = new FlxSprite(0, 0);
 		easymode.loadGraphic(Paths.image('menuimages/easydif','shared'));
-		hardmode:FlxSprite = new FlxSprite(0, 0);
+		hardmode = new FlxSprite(0, 0);
 		hardmode.loadGraphic(Paths.image('menuimages/harddif','shared'));
 
-		goback:FlxSprite = new FlxSprite(0, 0);
+		goback = new FlxSprite(0, 0);
 		goback.loadGraphic(Paths.image('menuimages/xback','shared'));
 
-		gobutton:FlxSprite = new FlxSprite(500, 600);
+		gobutton = new FlxSprite(500, 600);
 		gobutton.loadGraphic(Paths.image('menuimages/go','shared'));
 
-		fade:FlxSprite = new FlxSprite(0, 0);
+		fade = new FlxSprite(0, 0);
 		fade.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		fade.width = FlxG.width;
 		fade.height = FlxG.height;

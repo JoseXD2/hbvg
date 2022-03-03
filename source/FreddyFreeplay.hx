@@ -92,29 +92,29 @@ class FreddyFreeplay extends MusicBeatState
 	{
 		//BIRDY DECORATIONS YK
 		
-		bg:FlxSprite = new FlxSprite(-1010, -600);
+		bg = new FlxSprite(-1010, -600);
 		bg.loadGraphic(Paths.image('menuimages/freeplaybg','shared'));
 
-		ui:FlxSprite = new FlxSprite(0, 0);
+		ui = new FlxSprite(0, 0);
 		ui.loadGraphic(Paths.image('menuimages/freeplayui','shared'));
 		uiglitch = new FlxSprite(0, 0);
 		uiglitch.loadGraphic(Paths.image('menuimages/freeplayuitwo','shared'));
 
-		phaseone:FlxSprite = new FlxSprite(0, 0);
+		phaseone = new FlxSprite(0, 0);
 		phaseone.loadGraphic(Paths.image('menuimages/curphase','shared'));
 		phasetwo = new FlxSprite(0, 0);
 		phasetwo.loadGraphic(Paths.image('menuimages/curphase_two','shared'));
 		phasethree = new FlxSprite(0, 0);
 		phasethree.loadGraphic(Paths.image('menuimages/curphase_three','shared'));
 
-		descone:FlxSprite = new FlxSprite(0, 0);
+		descone = new FlxSprite(0, 0);
 		descone.loadGraphic(Paths.image('menuimages/desc_one','shared'));
 		desctwo = new FlxSprite(0, 0);
 		desctwo.loadGraphic(Paths.image('menuimages/desc_two','shared'));
 		descthree = new FlxSprite(0, 0);
 		descthree.loadGraphic(Paths.image('menuimages/desc_three','shared'));
 
-		songone:FlxSprite = new FlxSprite(100, 100);
+		songone = new FlxSprite(100, 100);
 		songone.loadGraphic(Paths.image('menuimages/song_one','shared'));
 		songtwo = new FlxSprite(100, 190);
 		songtwo.loadGraphic(Paths.image('menuimages/song_two','shared'));
@@ -123,16 +123,16 @@ class FreddyFreeplay extends MusicBeatState
 
 
 
-		staticeffect:FlxSprite = new FlxSprite(0, 0);
+		staticeffect = new FlxSprite(0, 0);
 		staticeffect.frames = Paths.getSparrowAtlas('static','shared');
 		staticeffect.animation.addByPrefix('idle', 'static_effect', 24, true);
 
 
-		fedy:FlxSprite = new FlxSprite(0, 0);
+		fedy = new FlxSprite(0, 0);
 		fedy.frames = Paths.getSparrowAtlas('menuimages/freddy_shake','shared');
 		fedy.animation.addByPrefix('idle', 'Freddy shake', 24, true);
 
-		pup:FlxSprite= new FlxSprite(0, 0);
+		pup = new FlxSprite(0, 0);
 		pup.frames = Paths.getSparrowAtlas('menuimages/puppet_freeplay','shared');
 		pup.animation.addByPrefix('idle', 'Puppet shake', 24, true);
 
@@ -142,18 +142,18 @@ class FreddyFreeplay extends MusicBeatState
 
 
 
-		fade:FlxSprite= new FlxSprite(0, 0);
+		fade = new FlxSprite(0, 0);
 		fade.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		fade.width = FlxG.width;
 		fade.height = FlxG.height;
 
-		goback:FlxSprite = new FlxSprite(0, 0);
+		goback = new FlxSprite(0, 0);
 		goback.loadGraphic(Paths.image('menuimages/xback','shared'));
 
-		gobutton:FlxSprite = new FlxSprite(500, 600);
+		gobutton = new FlxSprite(500, 600);
 		gobutton.loadGraphic(Paths.image('menuimages/go','shared'));
 
-		lineeffect:FlxSprite = new FlxSprite(0, 0);
+		lineeffect = new FlxSprite(0, 0);
 		lineeffect.loadGraphic(Paths.image('shadowbonniebgs/lines','shared'));
 
 

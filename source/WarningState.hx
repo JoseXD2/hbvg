@@ -68,18 +68,18 @@ class WarningState extends MusicBeatState
 
 
 
-		var staticeffect:FlxSprite = new FlxSprite(0, 0);
+		staticeffect = new FlxSprite(0, 0);
 		staticeffect.frames = Paths.getSparrowAtlas('static','shared');
 		staticeffect.animation.addByPrefix('idle', 'static_effect', 24, true);
 
-		var bg:FlxSprite = new FlxSprite(0, 0);
+		bg = new FlxSprite(0, 0);
 		bg.loadGraphic(Paths.image('warningBg','shared'));
 
-		var warning:FlxSprite = new FlxSprite(-300, -150);
+		warning = new FlxSprite(-300, -150);
 		warning.loadGraphic(Paths.image('warningText','shared'));
 		warning.setGraphicSize(Std.int(warning.width / 1.5));
 
-		var cont:FlxSprite = new FlxSprite(-320, -180);
+		cont = new FlxSprite(-320, -180);
 		cont.loadGraphic(Paths.image('pressX','shared'));
 		cont.setGraphicSize(Std.int(cont.width / 1.5));
 
