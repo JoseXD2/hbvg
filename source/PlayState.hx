@@ -845,7 +845,7 @@ class PlayState extends MusicBeatState
 					bg.y = -200;
 					add(bg);
 
-					balloons = new FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+					var balloons:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
 					balloons.x = -580;
 					balloons.y = -200;
@@ -885,14 +885,14 @@ class PlayState extends MusicBeatState
 					add(animatronicsbg);
 
 
-					balloons = new FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
+					var balloons:FlxSprite = new FlxSprite().loadGraphic(Paths.image('freddystage/stagecurtains','shared'));
 					balloons.setGraphicSize(Std.int(balloons.width * 0));
 					balloons.x = -580;
 					balloons.y = -200;
 					balloons.visible = true;
 					
 
-					var happybirthday = new FlxSprite();
+					var happybirthday:FlxSprite = new FlxSprite();
 					happybirthday.frames = Paths.getSparrowAtlas('freddystage/upperBop','shared');
 					happybirthday.animation.addByPrefix('idle', 'Upper Crowd Bob', 24, true);
 					happybirthday.antialiasing = true;
@@ -916,7 +916,7 @@ class PlayState extends MusicBeatState
 					// MINIGAME 1 BACKGROUND
 
 
-					minigameone = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/sb','shared'));
+					var minigameone:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/sb','shared'));
 					minigameone.setGraphicSize(Std.int(minigameone.width * 1.7));
 					minigameone.x = 0;
 					minigameone.y = 0;
@@ -924,41 +924,41 @@ class PlayState extends MusicBeatState
 					minigameone.visible = false;
 
 
-					minigametwo = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/mangle','shared'));
+					var minigametwo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/mangle','shared'));
 					minigametwo.setGraphicSize(Std.int(minigametwo.width * 1.7));
 					minigametwo.x = 0;
 					minigametwo.y = 0;
 					add(minigametwo);
 					minigametwo.visible = false;
 
-					minigamethree = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/fredbear','shared'));
+					var minigamethree:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/fredbear','shared'));
 					minigamethree.setGraphicSize(Std.int(minigamethree.width * 1.7));
 					minigamethree.x = 0;
 					minigamethree.y = 0;
 					add(minigamethree);
 					minigamethree.visible = false;
 
-					minigamefour = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/bb','shared'));
+					var minigamefour:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/bb','shared'));
 					minigamefour.setGraphicSize(Std.int(minigamefour.width * 1.7));
 					minigamefour.x = 0;
 					minigamefour.y = 0;
 					add(minigamefour);
 					minigamefour.visible = false;
 
-					minigamefive = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/t_chica','shared'));
+					var minigamefive:FlxSprite = new FlxSprite().loadGraphic(Paths.image('shadowbonniebgs/t_chica','shared'));
 					minigamefive.setGraphicSize(Std.int(minigamefive.width * 1.7));
 					minigamefive.x = 0;
 					add(minigamefive);
 					minigamefive.visible = false;
 
-					purplething = new FlxSprite(0, 0);
+					var purplething:FlxSprite = new FlxSprite(0, 0);
 					purplething.loadGraphic(Paths.image('freddystage/purplevoid','shared'));
 					purplething.setGraphicSize(Std.int(purplething.width * 2));
 					add(purplething);
 
-					cover = new FlxSprite(0, 0);
-		            cover.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		            cover.setGraphicSize(Std.int(minigamefive.width * 7));
+					var cover:FlxSprite = new FlxSprite(0, 0);
+		                        cover.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		                        cover.setGraphicSize(Std.int(minigamefive.width * 7));
 					add(cover);
 					cover.alpha = 1;
 
